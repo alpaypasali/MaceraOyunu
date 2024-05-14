@@ -43,8 +43,12 @@ public class Game {
         playerService.CreatePlayer(name);
         playerService.PrintPlayer();
         gameCharacterManager.PrintCharacter();
-        System.out.println("Please select a character:");
-        int id = scanner.nextInt();
+        int id;
+        do {
+            System.out.println("Please select a character:");
+            id = scanner.nextInt();
+        }while (id >= gameCharacterManager.CountCharacters());
+
         playerService.BuyCharacter(id);
         playerService.OurCharacter();
         while (isGameRunning()) {

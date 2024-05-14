@@ -58,6 +58,8 @@ public class PlayerManager implements IPlayerService {
             if(newCharPlayer.isEmpty()){
 
                 player.setSelectedChar(selectedCharacter);
+                player.setDamage(player.getDamage() + selectedCharacter.getDamage());
+                player.setHealth(player.getHealth() + selectedCharacter.getHealth());
             }
             newCharPlayer.add(selectedCharacter);
 
@@ -67,6 +69,7 @@ public class PlayerManager implements IPlayerService {
 
             // Oyuncunun charPlayer listesini set et
             player.setCharPlayer(newCharPlayer);
+
 
             return true;
         }
@@ -78,6 +81,8 @@ public class PlayerManager implements IPlayerService {
         GameCharacter selectedCharacter = characherManager.GetCharById(id);
         if (selectedCharacter != null) {
             player.setSelectedChar(selectedCharacter);
+            player.setDamage(player.getDamage() + selectedCharacter.getDamage());
+            player.setHealth(player.getHealth() + selectedCharacter.getHealth());
             return  true;
         }
 
@@ -101,10 +106,16 @@ public class PlayerManager implements IPlayerService {
         }
     }
 
+    @Override
+    public void PlayerInfo() {
+
+    }
+
     private  boolean isPlayerAlreadyHas(GameCharacter character){
         return newCharPlayer.contains(character);
 
     }
+
 
 
 

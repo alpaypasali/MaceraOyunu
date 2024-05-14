@@ -9,4 +9,5 @@ public interface IPlayerService {
     boolean BuyCharacter(int id);
     boolean SelectCharacter(int id);
     void OurCharacter();
+    void PlayerInfo();
 }

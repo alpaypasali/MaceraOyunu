@@ -67,7 +67,7 @@ public class Player {
 
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public void setHealth(int health) {

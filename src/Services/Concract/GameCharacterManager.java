@@ -54,4 +54,9 @@ public class GameCharacterManager implements IGameCharacterManager {
         }
         System.out.println("------------------------------------");
     }
+
+    @Override
+    public int CountCharacters() {
+        return characters.size();
+    }
 }

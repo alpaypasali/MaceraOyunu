@@ -9,4 +9,5 @@ public interface IGameCharacterManager {
     List<GameCharacter> listGameCharacters();
     GameCharacter GetCharById(int id);
     void PrintCharacter();
+    int CountCharacters();
 }
