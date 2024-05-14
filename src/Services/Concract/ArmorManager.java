@@ -4,14 +4,14 @@ import Enums.Armors;
 import Game.Armor;
 import Services.Absract.IArmorService;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ArmorManager implements IArmorService {
     private List<Armor> armorList;
 
     public ArmorManager() {
-        armorList = new ArrayList<>();
+        armorList =  new LinkedList<>();;
     }
 
     @Override
@@ -36,5 +36,16 @@ public class ArmorManager implements IArmorService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void PrintArmors() {
+        System.out.println("Armor List:");
+        System.out.println("ID\tArmor\t\tshield\tPrice");
+        System.out.println("------------------------------------");
+        for (Armor armor : armorList) {
+            System.out.println(armor.getId() + "\t" + armor.getArmor() + "\t\t" + armor.getShield() + "\t\t" + armor.getPrice());
+        }
+        System.out.println("------------------------------------");
     }
 }

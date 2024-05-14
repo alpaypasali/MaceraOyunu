@@ -8,4 +8,5 @@ public interface IArmorService {
     void CreateArmor();
     List<Armor> GetListArmor();
     Armor GetArmor(int id);
+    void PrintArmors();
 }

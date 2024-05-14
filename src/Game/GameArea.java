@@ -1,18 +1,17 @@
 package Game;
 
-public abstract class GameArea {
+public  abstract class GameArea {
+ private  Player player;
 
-    private  String Name;
-
-    public GameArea(String name) {
-        Name = name;
+    public GameArea(Player player) {
+        this.player = player;
     }
 
-    public String getName() {
-        return Name;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

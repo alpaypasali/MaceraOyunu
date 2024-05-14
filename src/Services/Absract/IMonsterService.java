@@ -9,4 +9,5 @@ public interface IMonsterService {
     void CreateMonster();
     List<Monster> GetListMonster();
     Monster GetMonster(int id);
+
 }

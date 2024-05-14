@@ -1,12 +1,41 @@
 package Game;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Player {
     private String name ;
     private  int damage;
     private  int health;
-    private LinkedList<Integer> charPlayer;
+    private  int money ;
+    private  GameCharacter selectedChar;
+
+    public GameCharacter getSelectedChar() {
+        return selectedChar;
+    }
+
+    public void setSelectedChar(GameCharacter selectedChar) {
+        this.selectedChar = selectedChar;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+
+    public List<GameCharacter> getCharPlayer() {
+        return charPlayer;
+    }
+
+    public void setCharPlayer(List<GameCharacter> charPlayer) {
+        this.charPlayer = charPlayer;
+    }
+
+    private List<GameCharacter> charPlayer;
     private  Inventory Inventory;
 
     public Inventory getInventory() {
@@ -19,6 +48,12 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        this.money = 100;
+        this.charPlayer = new LinkedList<>();
+    }
+    public Player(){
+
+
     }
 
     public String getName() {
@@ -29,13 +64,7 @@ public class Player {
         this.name = name;
     }
 
-    public LinkedList<Integer> getCharPlayer() {
-        return charPlayer;
-    }
 
-    public void setCharPlayer(LinkedList<Integer> charPlayer) {
-        this.charPlayer = charPlayer;
-    }
 
     public int getHealth() {
         return health;

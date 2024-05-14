@@ -1,10 +1,13 @@
 package Areas;
 
 import Game.GameArea;
+import Game.Player;
 
 public class SafeHouse extends GameArea {
-    public SafeHouse(String name) {
-        super(name);
+    public SafeHouse(Player player) {
+        super(player);
     }
-
 }
+
+
+
