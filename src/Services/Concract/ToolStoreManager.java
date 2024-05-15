@@ -7,12 +7,12 @@ import Services.Absract.IWeaponService;
 
 public class ToolStoreManager implements IToolStoreService {
 
-    private  Player player;
+
     private IWeaponService _weaponService;
     private IArmorService _armorService;
 
-    public ToolStoreManager(Player player) {
-        this.player =  player;
+    public ToolStoreManager( ) {
+
     }
     public void initializeServices(IWeaponService weaponService, IArmorService armorService) {
         this._weaponService = weaponService;

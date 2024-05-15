@@ -15,6 +15,9 @@ public  class GameCharacter {
         this.health = health;
         this.price = price;
     }
+    public  GameCharacter(){
+
+    }
     public GameCharacter(int id, Characters charName, int damage, int health) {
         this.id = id;
         this.charName = charName;

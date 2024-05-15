@@ -6,7 +6,7 @@ import Game.Player;
 public class ToolStore extends GameArea {
 
 
-    public ToolStore(Player player) {
-        super(player);
+    public ToolStore( ) {
+        super();
     }
 }

@@ -17,7 +17,7 @@ public class GameCharacterManager implements IGameCharacterManager {
     public GameCharacterManager() {
         // Karakterler listesini başlat
         characters = new LinkedList<>();
-
+        CreateGameChar();
     }
 
     @Override

@@ -7,8 +7,13 @@ public class Inventory {
     private boolean water;
     private boolean food;
     private boolean firewoord;
-    private List<Weapon> Weapons;
-    private  List<Armor> Armors;
+    private int weapon;
+    private  int armor;
+
+    public Inventory() {
+        this.weapon = 0;
+        this.armor = 0;
+    }
 
     public boolean isWater() {
         return water;
@@ -34,19 +39,19 @@ public class Inventory {
         this.firewoord = firewoord;
     }
 
-    public List<Weapon> getWeapons() {
-        return Weapons;
+    public int getWeapon() {
+        return weapon;
     }
 
-    public void setWeapons(List<Weapon> weapons) {
-        Weapons = weapons;
+    public void setWeapon(int weapon) {
+        this.weapon = weapon;
     }
 
-    public List<Armor> getArmors() {
-        return Armors;
+    public int getArmor() {
+        return armor;
     }
 
-    public void setArmors(List<Armor> armors) {
-        Armors = armors;
+    public void setArmor(int armor) {
+        this.armor = armor;
     }
 }

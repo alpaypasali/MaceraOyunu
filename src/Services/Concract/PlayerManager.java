@@ -1,7 +1,6 @@
 package Services.Concract;
 
-import Game.GameCharacter;
-import Game.Player;
+import Game.*;
 import Services.Absract.IArmorService;
 import Services.Absract.IGameCharacterManager;
 import Services.Absract.IPlayerService;
@@ -13,34 +12,38 @@ import java.util.Scanner;
 
 public class PlayerManager implements IPlayerService {
 
-    private Player player;
+
     private  List<GameCharacter> newCharPlayer;
     private IGameCharacterManager characherManager;
+    private  IArmorService armorService;
 
     // Kurucu metod, dışarıdan bir IGameCharacterManager nesnesi alır
-    public PlayerManager(IGameCharacterManager characherManager) {
-        this.characherManager = characherManager;
-        this.player = new Player();
+    public PlayerManager() {
+        this.characherManager = new GameCharacterManager();
+
         newCharPlayer  = new LinkedList<>();
+        armorService = new ArmorManager();
     }
 
 
 
     @Override
-    public void CreatePlayer(String name) {
+    public Player CreatePlayer(String name) {
+        Player player = new Player();
         player.setName(name);
         player.setMoney(100);
+        return  player;
 
     }
 
     @Override
-    public void PrintPlayer() {
+    public void PrintPlayer(Player player) {
         System.out.println(player.getName() + " Welcome to this adventure");
         System.out.println("Owned gold: " + player.getMoney());
     }
 
     @Override
-    public boolean BuyCharacter(int id) {
+    public boolean BuyCharacter(int id , Player player) {
         GameCharacter selectedCharacter = characherManager.GetCharById(id);
         if (selectedCharacter != null) {
             // selectedCharacter'ı yeni bir liste içine ekleyerek
@@ -67,8 +70,7 @@ public class PlayerManager implements IPlayerService {
             money = money - selectedCharacter.getPrice();
             player.setMoney(money);
 
-            // Oyuncunun charPlayer listesini set et
-            player.setCharPlayer(newCharPlayer);
+
 
 
             return true;
@@ -77,7 +79,7 @@ public class PlayerManager implements IPlayerService {
     }
 
     @Override
-    public boolean SelectCharacter(int id) {
+    public boolean SelectCharacter(int id , Player player) {
         GameCharacter selectedCharacter = characherManager.GetCharById(id);
         if (selectedCharacter != null) {
             player.setSelectedChar(selectedCharacter);
@@ -107,12 +109,43 @@ public class PlayerManager implements IPlayerService {
     }
 
     @Override
-    public void PlayerInfo() {
+    public void PlayerInfo(Player player) {
+        System.out.println("Weapon\tArmor\tDamage\tHealth\tMoney");
+        System.out.println("------------------------------------");
 
+            System.out.println(player.getInventory().getWeapon()  + "\t" + GetArmor(player.getInventory().getArmor()) + "\t\t" + player.getDamage() +"\t\t" + player.getHealth() +"\t\t" + player.getMoney());
+
+        System.out.println("------------------------------------");
+
+    }
+
+    @Override
+    public boolean Atack(Monster monster ,Player player) {
+        int a = player.getDamage();
+       monster.setHealth( monster.getHealth() - player.getDamage());
+       if(monster.getHealth() <= 0){
+           return  false;
+       }
+       return  true;
     }
 
     private  boolean isPlayerAlreadyHas(GameCharacter character){
         return newCharPlayer.contains(character);
+
+    }
+
+    private String GetArmor(int id){
+
+        if(id == 0) {
+            return "Punch";
+        }
+        else{
+            return armorService.GetArmor(id).getArmor().name();
+
+        }
+
+
+
 
     }
 
