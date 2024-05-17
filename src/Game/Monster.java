@@ -11,12 +11,7 @@ public class Monster {
     private  int price;
     private  int maxNumber;
 
-    public Monster(int id, Monsters monster, int damage, int health) {
-        this.id = id;
-        this.monster = monster;
-        this.damage = damage;
-        this.health = health;
-    }
+
 
     public Monster(){
 
@@ -31,14 +26,20 @@ public class Monster {
         this.maxNumber = maxNumber;
 
     }
-    public Monster(int id, int health, Monsters monster,int maxNumber) {
+    public Monster(int id, int damage, int health,int maxNumber ,Monsters monster) {
+        this.id = id;
+        this.monster = monster;
+        this.damage = damage;
+        this.health = health;
+        this.maxNumber = maxNumber;
+    }
+    public Monster(int id, Monsters monster, int health, int maxNumber , int price) {
 
         this.health = health;
         this.monster = monster;
         this.id = id;
-
         this.maxNumber = maxNumber;
-
+        this.price = price;
     }
 
     public int getMaxNumber() {

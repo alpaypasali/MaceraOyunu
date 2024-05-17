@@ -16,6 +16,7 @@ public class PlayerManager implements IPlayerService {
     private  List<GameCharacter> newCharPlayer;
     private IGameCharacterManager characherManager;
     private  IArmorService armorService;
+    private  IWeaponService weaponService;
 
     // Kurucu metod, dışarıdan bir IGameCharacterManager nesnesi alır
     public PlayerManager() {
@@ -23,6 +24,7 @@ public class PlayerManager implements IPlayerService {
 
         newCharPlayer  = new LinkedList<>();
         armorService = new ArmorManager();
+        weaponService = new WeaponManager();
     }
 
 
@@ -113,7 +115,7 @@ public class PlayerManager implements IPlayerService {
         System.out.println("Weapon\tArmor\tDamage\tHealth\tMoney");
         System.out.println("------------------------------------");
 
-            System.out.println(player.getInventory().getWeapon()  + "\t" + GetArmor(player.getInventory().getArmor()) + "\t\t" + player.getDamage() +"\t\t" + player.getHealth() +"\t\t" + player.getMoney());
+            System.out.println(GetWeapon(player.getInventory().getWeapon())  + "\t" + GetArmor(player.getInventory().getArmor()) + "\t\t" + player.getDamage() +"\t\t" + player.getHealth() +"\t\t" + player.getMoney());
 
         System.out.println("------------------------------------");
 
@@ -133,11 +135,19 @@ public class PlayerManager implements IPlayerService {
         return newCharPlayer.contains(character);
 
     }
+    private  String GetWeapon(int id){
+        if(id == 0){
+            return  "Punch";
+        }
+        else{
+            return weaponService.GetWeapon(id).getWeapon().name();
+        }
 
+    }
     private String GetArmor(int id){
 
         if(id == 0) {
-            return "Punch";
+            return "Rag";
         }
         else{
             return armorService.GetArmor(id).getArmor().name();

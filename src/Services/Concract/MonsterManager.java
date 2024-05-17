@@ -14,12 +14,12 @@ public class MonsterManager implements IMonsterService {
 
     private List<Monster> mosnterList;
 
-    private Random random;
+
 
     public MonsterManager() {
         this.mosnterList = new LinkedList<>();;
 
-        this.random = new Random();
+
     }
 
     @Override
@@ -27,7 +27,7 @@ public class MonsterManager implements IMonsterService {
         mosnterList.add(new Monster(1 ,10 , Monsters.Zombie , 4,3 ,3));
         mosnterList.add(new Monster(2 ,14 , Monsters.Vampire , 7 ,4 ,3));
         mosnterList.add(new Monster(3 ,20 , Monsters.Bear , 12 ,7 ,3));
-        mosnterList.add(new Monster(4 ,10 , Monsters.Snake  ,5));
+        mosnterList.add(new Monster(4  ,5 ,12 ,5,Monsters.Snake  ));
 
         return  mosnterList.getFirst();
     }
@@ -47,19 +47,21 @@ public class MonsterManager implements IMonsterService {
         return null;
     }
 
-    @Override
-    public int GetDamage(Monster monster) {
+
+    private int GetDamage() {
+        Random random = new Random();
        return random.nextInt(3 , 6);
     }
 
     @Override
     public List<Monster> GetCount(Monster monster) {
         List<Monster> monsters = new ArrayList<>();
+        Random random = new Random();
         int count = random.nextInt(1,monster.getMaxNumber() + 1); // Belirli bir maksimum sayıya kadar rastgele bir sayı oluşturur
 
         // Belirtilen sayı kadar canavar oluşturulur
         for (int i = 0; i < count; i++) {
-            Monster newMonster = new Monster(monster.getId(),  monster.getMonster(), monster.getDamage(), monster.getHealth());
+            Monster newMonster = new Monster(monster.getId(),  monster.getMonster(),monster.getHealth(), monster.getDamage() ,monster.getPrice());
             monsters.add(newMonster);
         }
 
@@ -69,7 +71,7 @@ public class MonsterManager implements IMonsterService {
 
     @Override
     public boolean MonsterAtack(Monster monster ,Player player) {
-
+        Random random = new Random();
         int randomNumber = random.nextInt(100);
 
 
@@ -78,9 +80,14 @@ public class MonsterManager implements IMonsterService {
             return true;
         }
 
+        int damage;
+            if(monster.getMonster() == Monsters.Snake){
 
-
-            int damage = monster.getDamage();
+                damage = GetDamage();
+            }
+            else {
+                damage = monster.getDamage();
+            }
             player.setHealth(player.getHealth() - damage);
 
             if(player.getHealth() <= 0) {

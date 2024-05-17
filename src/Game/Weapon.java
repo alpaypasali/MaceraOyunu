@@ -10,6 +10,9 @@ public class Weapon {
         this.damage = damage;
         this.price = price;
     }
+    public Weapon(){
+
+    }
 
     public int getId() {
         return id;

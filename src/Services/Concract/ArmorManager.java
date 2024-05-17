@@ -11,7 +11,8 @@ public class ArmorManager implements IArmorService {
     private List<Armor> armorList;
 
     public ArmorManager() {
-        armorList =  new LinkedList<>();;
+        armorList =  new LinkedList<>();
+        CreateArmor();
     }
 
     @Override
@@ -30,6 +31,7 @@ public class ArmorManager implements IArmorService {
 
     @Override
     public Armor GetArmor(int id) {
+        armorList = GetListArmor();
         for (Armor armor : armorList) {
             if (armor.getId() == id) {
                 return armor;
@@ -47,5 +49,10 @@ public class ArmorManager implements IArmorService {
             System.out.println(armor.getId() + "\t" + armor.getArmor() + "\t\t" + armor.getShield() + "\t\t" + armor.getPrice());
         }
         System.out.println("------------------------------------");
+    }
+    public int GetArmorsCount(){
+
+
+        return armorList.size();
     }
 }

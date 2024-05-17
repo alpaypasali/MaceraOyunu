@@ -9,4 +9,5 @@ public interface IArmorService {
     List<Armor> GetListArmor();
     Armor GetArmor(int id);
     void PrintArmors();
+    int GetArmorsCount();
 }

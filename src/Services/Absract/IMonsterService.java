@@ -10,7 +10,6 @@ public interface IMonsterService {
     Monster CreateMonster();
     List<Monster> GetListMonster();
     Monster GetMonster(int id);
-    int GetDamage(Monster monster);
     List<Monster> GetCount(Monster monster);
     boolean MonsterAtack(Monster monster ,Player player);
 

@@ -8,6 +8,7 @@ public interface IWeaponService {
 
     void CreateWeapon();
     List<Weapon> GetListWeapon();
-    Weapon GetMonster(int id);
+    Weapon GetWeapon(int id);
     void PrintWeapons();
+    int GetWeaponsCount();
 }

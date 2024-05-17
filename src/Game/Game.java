@@ -17,14 +17,18 @@ public class Game {
     private  IForestService forestService;
     private  ICaveService caveService;
     private  IRiverService riverService;
+    private IMineService mineService;
     Scanner scanner = new Scanner(System.in);
     private  Player player;
     private  Monster monster ;
+    private  boolean exit = false;
+
     private boolean gameRunning = true;
     public Game() {
         this.caveService = new CaveManager();
         this.forestService = new ForestManager();
         this.riverService = new RiverManager();
+        this.mineService = new MineManager();
 
         System.out.println("Are You Ready for an Exciting Adventure? Open the doors because we're inviting you into a fantastic journey!\tAre you ready for adrenaline-filled moments, mysterious discoveries, and unforgettable experiences?");
 
@@ -35,9 +39,9 @@ public class Game {
 
         this.weaponService = new WeaponManager();
         this.gameCharacterManager = new GameCharacterManager();
-        this.armorService.CreateArmor();
 
-        this.weaponService.CreateWeapon();;
+
+
 
         this.playerService = new PlayerManager();
 
@@ -75,12 +79,19 @@ public class Game {
             ChooseArea();
             if(!gameRunning)
                 System.out.println("Game Over");
+
+            if(exit)
+                System.out.println("By By");
+            return;
         }
 
 
     }
     public boolean isGameRunning() {
         return gameRunning;
+    }
+    public  boolean isExit(){
+        return exit;
     }
 
     private void ChooseArea(){
@@ -92,14 +103,18 @@ public class Game {
         System.out.println("4. River --> You might encounter a bear!");
         System.out.println("5. Mine --> You might encounter a snake!");
         System.out.println("6. Store --> You can buy weapons or armor!");
+        System.out.println("0. Exit !");
         System.out.print("Enter the place you want to go: ");
         int select = scanner.nextInt();
         while (select < 0 || select > 6) {
             System.out.print("Please select a valid place: ");
             select = scanner.nextInt();
         }
-        switch (select) {
 
+        switch (select) {
+            case 0:
+                exit = true;
+                break;
             case 1:
                 safeHouseService.onLacation(player);
                 playerService.PlayerInfo(player);
@@ -140,9 +155,50 @@ public class Game {
 
                 playerService.PlayerInfo(player);
                 break;
+            case 5:
 
-            default:
+                monster = monsterService.GetMonster(4);
+
+                if(!forestService.onLocation(player,monster))
+                    gameRunning = false;
+
+                playerService.PlayerInfo(player);
                 break;
+            case 6:
+                storeService.onLocation();
+                System.out.print("Enter the place you want to go: ");
+                int storeSelect = scanner.nextInt();
+                int selectBuy;
+                if(storeSelect == 1){
+                    armorService.PrintArmors();
+                   System.out.println("Your money :" + player.getMoney());
+                    do {
+                        System.out.print("Please select the item you want to buy (Press 0 to exit ) : ");
+                        selectBuy   = scanner.nextInt();
+                    }while (selectBuy >= armorService.GetArmorsCount() + 1);
+                    if(selectBuy == 0) break;
+                   storeService.BuyArmor(selectBuy , player);
+                   playerService.PlayerInfo(player);
+                   break;
+
+                }
+                if(storeSelect == 2){
+                    weaponService.PrintWeapons();
+                    System.out.println("Your money :" + player.getMoney());
+                    do {
+                        System.out.print("Please select the item you want to buy (Press 0 to exit ) : ");
+                        selectBuy   = scanner.nextInt();
+                    }while (selectBuy >= weaponService.GetWeaponsCount() + 1);
+                    if(selectBuy == 0) break;
+                    storeService.BuyWeapon(selectBuy , player);
+                    playerService.PlayerInfo(player);
+                    break;
+                }
+                if(storeSelect == 3){
+                    break;
+                }
+                default:
+                 break;
         }
 
 

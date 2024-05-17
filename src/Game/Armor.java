@@ -14,6 +14,9 @@ public class Armor {
         this.armor = armor;
         this.shield = shield;
     }
+    public  Armor(){
+
+    }
 
     public int getId() {
         return id;

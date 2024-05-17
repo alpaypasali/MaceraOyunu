@@ -13,6 +13,7 @@ public class WeaponManager implements IWeaponService {
 
     public WeaponManager() {
         this.weaponList = new LinkedList<>();
+        CreateWeapon();
     }
 
     @Override
@@ -29,7 +30,8 @@ public class WeaponManager implements IWeaponService {
 
 
     @Override
-    public Weapon GetMonster(int id) {
+    public Weapon GetWeapon(int id) {
+        weaponList = GetListWeapon();
         for (Weapon weapon : weaponList) {
             if (weapon.getId() == id) {
                 return weapon;
@@ -47,6 +49,11 @@ public class WeaponManager implements IWeaponService {
             System.out.println(weapon.getId() + "\t" + weapon.getWeapon() + "\t\t" + weapon.getDamage() + "\t\t" + weapon.getPrice());
         }
         System.out.println("------------------------------------");
+    }
+    public int GetWeaponsCount(){
+
+
+        return weaponList.size();
     }
 
 }
