@@ -15,14 +15,14 @@ public class Player {
     // Constructor
     public Player(String name) {
         this.name = name;
-        this.money = 100;
+        this.money = 25;
         this.selectedChar = new GameCharacter();
         this.inventory = new Inventory(); // Initialize inventory
     }
 
     // Default constructor
     public Player() {
-        this.money = 100;
+        this.money = 25;
         this.selectedChar = new GameCharacter();
         this.inventory = new Inventory(); // Initialize inventory
     }
