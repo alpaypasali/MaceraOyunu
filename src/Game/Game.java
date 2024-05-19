@@ -18,6 +18,7 @@ public class Game {
     private  ICaveService caveService;
     private  IRiverService riverService;
     private IMineService mineService;
+    boolean isWin = false;
     Scanner scanner = new Scanner(System.in);
     private  Player player;
     private  Monster monster ;
@@ -79,10 +80,9 @@ public class Game {
             ChooseArea();
             if(!gameRunning)
                 System.out.println("Game Over");
-            if(isWin()){
+            if (isWin)
                 System.out.println("You Win!");
-                return;
-            }
+
 
             if(isExit()) {
                 System.out.println("By By");
@@ -126,6 +126,9 @@ public class Game {
                 exit = true;
                 break;
             case 1:
+                if(isWin())
+                    isWin = true;
+
                 safeHouseService.onLacation(player);
                 playerService.PlayerInfo(player);
                 break;
