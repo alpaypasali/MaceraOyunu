@@ -61,7 +61,7 @@ public class MonsterManager implements IMonsterService {
 
         // Belirtilen sayı kadar canavar oluşturulur
         for (int i = 0; i < count; i++) {
-            Monster newMonster = new Monster(monster.getId(),  monster.getMonster(),monster.getHealth(), monster.getDamage() ,monster.getPrice());
+            Monster newMonster = new Monster(monster.getId(), monster.getHealth(), monster.getMonster(), monster.getPrice() ,monster.getDamage(),monster.getMaxNumber());
             monsters.add(newMonster);
         }
 

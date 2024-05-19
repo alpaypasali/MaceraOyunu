@@ -79,13 +79,23 @@ public class Game {
             ChooseArea();
             if(!gameRunning)
                 System.out.println("Game Over");
+            if(isWin()){
+                System.out.println("You Win!");
+                return;
+            }
 
-            if(exit)
+            if(isExit()) {
                 System.out.println("By By");
-            return;
+                return;
+            }
         }
 
 
+    }
+    public boolean isWin(){
+
+
+        return  player.getInventory().isFirewoord() && player.getInventory().isWater() && player.getInventory().isFood();
     }
     public boolean isGameRunning() {
         return gameRunning;
@@ -159,7 +169,7 @@ public class Game {
 
                 monster = monsterService.GetMonster(4);
 
-                if(!forestService.onLocation(player,monster))
+                if(!mineService.onLocation(player,monster))
                     gameRunning = false;
 
                 playerService.PlayerInfo(player);
